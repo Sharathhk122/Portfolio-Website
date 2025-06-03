@@ -7,20 +7,25 @@ import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
-import { useState, useEffect } from "react"; // Add useEffect and useState
+import { useState, useEffect } from "react";
 import "./s1.css"
-// Replace TypeAnimation import with dynamic import
 import dynamic from 'next/dynamic';
+
+
+// Import TypeAnimation with dynamic import and no SSR
 const TypeAnimation = dynamic(
   () => import('react-type-animation').then(mod => mod.TypeAnimation),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => <span className="animated-gradient-text">Hello, I'm SHARATH H K...</span>
+  }
 );
 
 function HeroSection() {
-  const [isClient, setIsClient] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsMounted(true);
   }, []);
 
   return (
@@ -31,21 +36,22 @@ function HeroSection() {
         width={1572}
         height={795}
         className="absolute -top-[98px] -z-10"
+        priority
       />
 
       <div className="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-8">
         <div className="order-2 lg:order-1 flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10">
           <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
-            {isClient ? (
+            {isMounted ? (
               <TypeAnimation
                 sequence={[
-                  "Hello, I’m SHARATH H K, a seasoned professional in software development, passionate about crafting innovative digital solutions.",
+                  "Hello, I'm SHARATH H K, a seasoned professional in software development...",
                   1000,
-                  "Warm greetings! I'm SHARATH H K, a proud software developer dedicated to building meaningful and impactful technology.",
+                  "Warm greetings! I'm SHARATH H K, a proud software developer...",
                   1000,
-                  "Hey there! I'm SHARATH H K a creative and enthusiastic software developer driven by purpose and precision.",
+                  "Hey there! I'm SHARATH H K a creative and enthusiastic...",
                   1000,
-                  "Hi, I'm SHARATH H K a devoted and dynamic software developer with a strong commitment to excellence.",
+                  "Hi, I'm SHARATH H K a devoted and dynamic software developer...",
                   1000,
                 ]}
                 wrapper="span"
@@ -55,11 +61,10 @@ function HeroSection() {
               />
             ) : (
               <span className="animated-gradient-text">
-                Hello, I’m SHARATH H K, a seasoned professional in software development...
+                Hello, I'm SHARATH H K, a seasoned professional in software development...
               </span>
             )}
           </h1>
-
           <div className="my-12 flex items-center gap-5">
             <Link
               href={personalData.github}
