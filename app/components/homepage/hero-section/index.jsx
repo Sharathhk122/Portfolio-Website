@@ -1,5 +1,4 @@
-// @flow strict
-
+'use client';
 import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,8 +7,16 @@ import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
+import { useState, useEffect } from "react"; // Add useEffect and useState
+import "./s1.css"
 
 function HeroSection() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
       <Image
@@ -23,12 +30,28 @@ function HeroSection() {
       <div className="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-8">
         <div className="order-2 lg:order-1 flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10">
           <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
-            Hello, <br />
-            This is {' '}
-            <span className=" text-pink-500">{personalData.name}</span>
-            {` , I'm a Professional `}
-            <span className=" text-[#16f2b3]">{personalData.designation}</span>
-            .
+            {isClient ? (
+              <TypeAnimation
+                sequence={[
+                  "Hello, I’m SHARATH H K, a seasoned professional in software development, passionate about crafting innovative digital solutions.",
+                  1000,
+                  "Warm greetings! I'm SHARATH H K, a proud software developer dedicated to building meaningful and impactful technology.",
+                  1000,
+                  "Hey there! I'm SHARATH H K a creative and enthusiastic software developer driven by purpose and precision.",
+                  1000,
+                  "Hi, I'm SHARATH H K a devoted and dynamic software developer with a strong commitment to excellence.",
+                  1000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+                className="animated-gradient-text"
+              />
+            ) : (
+              <span className="animated-gradient-text">
+                Hello, I’m SHARATH H K, a seasoned professional in software development...
+              </span>
+            )}
           </h1>
 
           <div className="my-12 flex items-center gap-5">
