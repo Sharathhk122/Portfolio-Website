@@ -9,7 +9,12 @@ import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
 import { useState, useEffect } from "react"; // Add useEffect and useState
 import "./s1.css"
-import { TypeAnimation } from 'react-type-animation';
+// Replace TypeAnimation import with dynamic import
+import dynamic from 'next/dynamic';
+const TypeAnimation = dynamic(
+  () => import('react-type-animation').then(mod => mod.TypeAnimation),
+  { ssr: false }
+);
 
 function HeroSection() {
   const [isClient, setIsClient] = useState(false);
