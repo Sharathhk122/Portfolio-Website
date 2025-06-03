@@ -11,13 +11,12 @@ import { useState, useEffect } from "react";
 import "./s1.css"
 import dynamic from 'next/dynamic';
 
-
 // Import TypeAnimation with dynamic import and no SSR
 const TypeAnimation = dynamic(
   () => import('react-type-animation').then(mod => mod.TypeAnimation),
   { 
     ssr: false,
-    loading: () => <span className="animated-gradient-text">Hello, I'm SHARATH H K...</span>
+    loading: () => <span className="animated-gradient-text">Hello, I&apos;m SHARATH H K...</span>
   }
 );
 
@@ -45,13 +44,13 @@ function HeroSection() {
             {isMounted ? (
               <TypeAnimation
                 sequence={[
-                  "Hello, I'm SHARATH H K, a seasoned professional in software development...",
+                  "Hello, I&apos;m SHARATH H K, a seasoned professional in software development...",
                   1000,
-                  "Warm greetings! I'm SHARATH H K, a proud software developer...",
+                  "Warm greetings! I&apos;m SHARATH H K, a proud software developer...",
                   1000,
-                  "Hey there! I'm SHARATH H K a creative and enthusiastic...",
+                  "Hey there! I&apos;m SHARATH H K a creative and enthusiastic...",
                   1000,
-                  "Hi, I'm SHARATH H K a devoted and dynamic software developer...",
+                  "Hi, I&apos;m SHARATH H K a devoted and dynamic software developer...",
                   1000,
                 ]}
                 wrapper="span"
@@ -61,7 +60,7 @@ function HeroSection() {
               />
             ) : (
               <span className="animated-gradient-text">
-                Hello, I'm SHARATH H K, a seasoned professional in software development...
+                Hello, I&apos;m SHARATH H K, a seasoned professional in software development...
               </span>
             )}
           </h1>
@@ -117,7 +116,6 @@ function HeroSection() {
               <MdDownload size={16} />
             </Link>
           </div>
-
         </div>
         <div className="order-1 lg:order-2 from-[#0d1224] border-[#1b2c68a0] relative rounded-lg border bg-gradient-to-r to-[#0a0d37]">
           <div className="flex flex-row">
