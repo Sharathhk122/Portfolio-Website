@@ -1,39 +1,22 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
-import Loading from './loading';
-
-// Components that might use browser APIs
-const SafeHeroSection = dynamic(() => import('./components/homepage/hero-section'), {
-  ssr: false,
-  loading: () => <div className="min-h-[80vh] bg-[#0d1224]"></div>
-});
-
-const SafeSkills = dynamic(() => import('./components/homepage/skills'), {
-  ssr: false,
-  loading: () => <div className="min-h-[50vh] bg-[#0d1224]"></div>
-});
-
-// Components that are safe for SSR
-const AboutSection = dynamic(() => import('./components/homepage/about'));
-const Experience = dynamic(() => import('./components/homepage/experience'));
-const Projects = dynamic(() => import('./components/homepage/projects'));
-const Education = dynamic(() => import('./components/homepage/education'));
-const ContactSection = dynamic(() => import('./components/homepage/contact'));
+import { personalData } from "@/utils/data/personal-data";
+import AboutSection from "./components/homepage/about";
+import ContactSection from "./components/homepage/contact";
+import Education from "./components/homepage/education";
+import Experience from "./components/homepage/experience";
+import HeroSection from "./components/homepage/hero-section";
+import Projects from "./components/homepage/projects";
+import Skills from "./components/homepage/skills";
 
 export default function Home() {
   return (
-    <main className="bg-[#0d1224]">
-      <Suspense fallback={<Loading />}>
-        <SafeHeroSection />
-        <AboutSection />
-        <Experience />
-        <SafeSkills />
-        <Projects />
-        <Education />
-        <ContactSection />
-      </Suspense>
-    </main>
-  );
+    <div>
+      <HeroSection />
+      <AboutSection />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Education />
+      <ContactSection />
+    </div>
+  )
 }
