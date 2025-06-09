@@ -10,6 +10,7 @@ import { SiLeetcode } from "react-icons/si";
 import { useState, useEffect } from "react";
 import "./s1.css"
 import dynamic from 'next/dynamic';
+ import useIsClient from './hooks/useIsClient';
 
 // Import TypeAnimation with dynamic import and no SSR
 const TypeAnimation = dynamic(
@@ -22,11 +23,15 @@ const TypeAnimation = dynamic(
 
 function HeroSection() {
   const [isMounted, setIsMounted] = useState(false);
-
+ 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  const isClient = useIsClient();
 
+  if (!isClient) {
+    return <div className="min-h-[80vh] bg-[#0d1224]"></div>;
+  }
   return (
     <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
       <Image

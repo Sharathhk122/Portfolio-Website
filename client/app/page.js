@@ -2,46 +2,34 @@
 
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
-import Loading from './loading'; // Create a loading component
+import Loading from './loading';
 
-// Dynamically import all homepage sections with SSR disabled
-const HeroSection = dynamic(() => import('./components/homepage/hero-section'), { 
+// Components that might use browser APIs
+const SafeHeroSection = dynamic(() => import('./components/homepage/hero-section'), {
   ssr: false,
-  loading: () => <div className="min-h-[80vh]"></div>
+  loading: () => <div className="min-h-[80vh] bg-[#0d1224]"></div>
 });
-const AboutSection = dynamic(() => import('./components/homepage/about'), { 
+
+const SafeSkills = dynamic(() => import('./components/homepage/skills'), {
   ssr: false,
-  loading: () => <div className="min-h-[50vh]"></div>
+  loading: () => <div className="min-h-[50vh] bg-[#0d1224]"></div>
 });
-const Experience = dynamic(() => import('./components/homepage/experience'), { 
-  ssr: false,
-  loading: () => <div className="min-h-[50vh]"></div>
-});
-const Skills = dynamic(() => import('./components/homepage/skills'), { 
-  ssr: false,
-  loading: () => <div className="min-h-[50vh]"></div>
-});
-const Projects = dynamic(() => import('./components/homepage/projects'), { 
-  ssr: false,
-  loading: () => <div className="min-h-[50vh]"></div>
-});
-const Education = dynamic(() => import('./components/homepage/education'), { 
-  ssr: false,
-  loading: () => <div className="min-h-[50vh]"></div>
-});
-const ContactSection = dynamic(() => import('./components/homepage/contact'), { 
-  ssr: false,
-  loading: () => <div className="min-h-[50vh]"></div>
-});
+
+// Components that are safe for SSR
+const AboutSection = dynamic(() => import('./components/homepage/about'));
+const Experience = dynamic(() => import('./components/homepage/experience'));
+const Projects = dynamic(() => import('./components/homepage/projects'));
+const Education = dynamic(() => import('./components/homepage/education'));
+const ContactSection = dynamic(() => import('./components/homepage/contact'));
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-[#0d1224]">
       <Suspense fallback={<Loading />}>
-        <HeroSection />
+        <SafeHeroSection />
         <AboutSection />
         <Experience />
-        <Skills />
+        <SafeSkills />
         <Projects />
         <Education />
         <ContactSection />
