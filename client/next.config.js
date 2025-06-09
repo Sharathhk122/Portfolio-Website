@@ -1,14 +1,10 @@
-const path = require('path');
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const path = require('path')
+ 
+module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  output: 'export', // Force static export
-  reactStrictMode: true,
   images: {
-    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
@@ -27,17 +23,4 @@ const nextConfig = {
       },
     ],
   },
-  // Disable server-side rendering for specific problematic packages
-  transpilePackages: ['react-syntax-highlighter'],
-  webpack: (config) => {
-    config.resolve.fallback = { 
-      ...config.resolve.fallback,
-      fs: false,
-      path: false,
-      os: false,
-    };
-    return config;
-  },
-};
-
-module.exports = nextConfig;
+}
